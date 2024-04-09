@@ -27,10 +27,11 @@ function listTabs() {
 
 //not working
 function makeAlert() { //notify user when over 14 tabs are present
+    const numTabs = document.getElementById("num-weeks").value;
     console.log(getCurrentWindowTabs().length);
-    if(getCurrentWindowTabs().length >= 14) {
+    if(getCurrentWindowTabs().length >= numTabs) {
         const notification = new Notification("You have a lot of tabs open!", {
-            body: "You currently have 14 or more tabs. Try decreasing the amount!",
+            body: "You currently have "+ numTabs +" or more tabs. Try decreasing the amount!",
             icon: "icons/alert-icon-1562.png"
         });
         document.addEventListener("visibilitychange", () => { //when notification becomes visible, remove
@@ -74,12 +75,11 @@ function removeDuplicates() { //loop through the tabs; if there is duplicate(s),
 }
 
 // Need to check
-// TODO: make it that users can input "old" amount
-function removeOld() { //loop through tabs; if a tab has been last acessed >= week ago, remove
+function removeOld(n) { //loop through tabs; if a tab has been last acessed >= week ago, remove
     console.log("Removing old...")
     getCurrentWindowTabs().then((tabs) => {
         for (const tab of tabs) {
-            if(tab.lastAccessed >= 604800000) { //in milliseconds
+            if(tab.lastAccessed >= 604800000*n) { //in milliseconds/week
                 browser.tabs.remove(tab.id);
             }
         }
@@ -102,22 +102,24 @@ function bookmarkAndRemove(tab) {
 document.addEventListener("DOMContentLoaded", listTabs);
 document.addEventListener("DOMContentLoaded", makeAlert);
 
+//TODO: refresh function in order to save #weeks
+//TODO: prevent negative weeks/tabs
 document.addEventListener("click", (e) => {
     if (e.target.id === "organize-time-oldest") {
         organizeByTime(true);
-        console.log("organized");
+        browser.runtime.reload();
     } else if (e.target.id === "organize-time-newest") {
         organizeByTime(false);
-        console.log("organized");
+        browser.runtime.reload();
     } else if (e.target.id === "remove-duplicates") {
         removeDuplicates();
+        browser.runtime.reload();
     } else if (e.target.id === "remove-old") {
-        removeOld();
-        console.log("old removed");
-    } else {
+        removeOld(document.getElementById("num-weeks").value); //get input from num-weeks and pass in
+        browser.runtime.reload();
+    } else if (e.target.id === "bookmark-remove-chosen") {
         bookmarkAndRemove(e.target);
-        console.log("bookmarked and removed");
+        browser.runtime.reload();
     }
-    browser.runtime.reload(); //refresh extension to update what is on its menu
 });
   
