@@ -6,3 +6,13 @@ h4 {
 input {
     width: 12%;
 }
+
+#tabs-list {
+    margin-left: 5%;
+    font-size: 85%;
+}
+
+#for-notif {
+    color: red;
+    display: none;
+}

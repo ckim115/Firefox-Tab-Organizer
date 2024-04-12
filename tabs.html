@@ -24,14 +24,17 @@
 
             <a href="#" id="remove-old">
                 Remove old tabs
-            </a> <span> (> <input type="number" id="num-weeks" value=3> week(s))</span>
+            </a> <span> (> <input type="number" id="num-weeks" min="0" value=3> week(s))</span>
 
             <div class="bookmark-remove-chosen">
-                <h4>Bookmark & remove tab</h4>
+                <h4>Bookmark & Remove Tab</h4>
                 <div id="tabs-list"></div>
             </div>
+            
+            <p>Notify after > <input type="number" id="num-tabs" min="0" value=10> tabs created</p>
 
-            <p id="notif-tabs">Notify after > <input type="number" id="num-tabs" value=14> tabs created</p>
+            <a href="#" id="for-notif"></a>
+            
         </div>
 
         <script src="tabs.js"></script>

@@ -5,18 +5,18 @@
         "default_icon": "icons/tabs_167113.png"
     },
     "description": "A list of methods you can perform on a tab.",
-    "homepage_url": "https://github.com/mdn/webextensions-examples/tree/main/tabs-tabs-tabs",
+    "homepage_url": "https://github.com/ckim115/Firefox-Tab-Organizer",
     "manifest_version": 2,
     "name": "Tabs Organizer",
     "icons": {
-        "48": "icons/tabs_167113.png",
-        "64": "icons/alert-icon-1562.png"
+        "48": "icons/tabs_167113.png"
     },
 
     "permissions": [
         "<all_urls>",
         "bookmarks",
         "tabs",
+        "storage",
         "notifications"
     ],
     "version": "1.0"
