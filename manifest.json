@@ -16,8 +16,7 @@
         "<all_urls>",
         "bookmarks",
         "tabs",
-        "storage",
-        "notifications"
+        "storage"
     ],
     "version": "1.0"
 }
