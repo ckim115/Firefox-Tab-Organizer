@@ -171,8 +171,8 @@ function updateInputs() {
 //returns milliseconds in a number of weeks
 function weeksToMilliseconds(n) {
     //for presentation, change to secondToMilliseconds
-    //const ans = n*1000;
-    const ans = n*604800000;
+    const ans = n*1000;
+    //const ans = n*604800000;
     return ans;
 }
 
